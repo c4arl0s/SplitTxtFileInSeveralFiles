@@ -3,8 +3,8 @@ echo "pattern in the file -> definition:Meaning"
 numberOfLines=`wc -l glossary.txt | cut -f 6 -d " "`
 echo -e "number of lines $numberOfLines"
 
-cat glossary.txt | while read line; do
-	
+cat glossary.txt | while read line
+do
 	definition=`echo $line | cut -f 1 -d ":"`
 	echo "$definition"
 	definitionFirstLetterCapitalized=`echo $definition | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1'`
@@ -12,6 +12,5 @@ cat glossary.txt | while read line; do
 	touch $definitionRemoveWhiteSpaces.txt
 	echo "$definitionRemoveWhiteSpaces"
 	echo "$line" > $definitionRemoveWhiteSpaces.txt	
-
 done
 
