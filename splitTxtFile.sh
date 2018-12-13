@@ -1,5 +1,5 @@
 #!/bin/bash
-txtFile=$1
-path=$pwd
-pathFile=./$txtFile
-cat $1 | head -100 | tail -1 | cut -f 1 -d ":"
+
+numberOfLines=`wc -l glossary.txt | cut -f 6 -d " "`
+echo -e "number of lines $numberOfLines"
+cat glossary.txt | head -100 | tail -1 | cut -f 2 -d ":"
