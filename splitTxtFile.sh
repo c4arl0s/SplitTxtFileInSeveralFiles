@@ -1,16 +1,17 @@
 #!/bin/bash
-
+echo "pattern in the file -> definition:Meaning"
 numberOfLines=`wc -l glossary.txt | cut -f 6 -d " "`
 echo -e "number of lines $numberOfLines"
 
 cat glossary.txt | while read line; do
 	
-	definition=`echo $line | cut -f 1 -d ":" | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1'`
+	definition=`echo $line | cut -f 1 -d ":"`
 	echo "$definition"
-	definitionNoSpace=`echo "$definition" | tr -d ' '`
-	touch $definitionNoSpace.txt
-	echo "$definitionNoSpace"
-	echo "$line" > $definitionNoSpace.txt	
+	definitionFirstLetterCapitalized=`echo $definition | awk '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1'`
+	definitionRemoveWhiteSpaces=`echo "$definitionFirstLetterCapitalized" | tr -d ' '`
+	touch $definitionRemoveWhiteSpaces.txt
+	echo "$definitionRemoveWhiteSpaces"
+	echo "$line" > $definitionRemoveWhiteSpaces.txt	
 
 done
 
