@@ -4,7 +4,7 @@ echo "pattern in the file -> definition:Meaning"
 numberOfLines=`wc -l $file.txt | cut -f 6 -d " "`
 echo -e "number of lines $numberOfLines"
 
-cat glossary.txt | while read line
+cat $file | while read line
 do
 	definition=`echo $line | cut -f 1 -d ":"`
 	echo "$definition"
